@@ -33,7 +33,4 @@ public class Account {
 
     @Column(name = "created_at")
     LocalDateTime createTs;
-
-
-
-}eee
+}
