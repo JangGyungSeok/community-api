@@ -18,6 +18,12 @@
                 </td>
                 <td th:text="${board.updatedAt}">
                 </td>
+                [[${board.posts}]]
+                <td th:each="post, j:${board.posts}">
+                    <p th:text="${post.postTitle}">
+
+                    </p>
+                </td>
             </tr>
         </tbody>
     </table>
