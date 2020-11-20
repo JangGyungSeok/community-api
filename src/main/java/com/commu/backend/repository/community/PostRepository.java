@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
     public Optional<Post> findById(Long postIdx);
-    public List<Post> findByBoardIdx(String boardIdx);
+    public List<Post> findByBoardIdx(long boardIdx);
     public List<Post> findAll();
 }

@@ -12,7 +12,7 @@ public class PostService {
     @Autowired
     PostRepository postRepository;
 
-    public List<Post> getPostList(String boardName) {
-        return this.postRepository.findByBoardIdx(boardName);
+    public List<Post> getPostList(long boardIdx) {
+        return this.postRepository.findByBoardIdx(boardIdx);
     }
 }

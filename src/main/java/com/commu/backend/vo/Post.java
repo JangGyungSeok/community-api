@@ -3,11 +3,13 @@ package com.commu.backend.vo;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@ToString(exclude = "board")
 @Table(name="posts")
 public class Post {
 	@Id
@@ -15,7 +17,7 @@ public class Post {
 	@Column(name = "post_idx")
 	private long postIdx;
 
-	@Column(name = "board_idx")
+	@Column(name = "board_idx", insertable = false, updatable = false)
 	private long boardIdx;
 
 	@Column(name = "post_title")
@@ -32,4 +34,8 @@ public class Post {
 
 	@Column(name = "updated_at")
 	private Date updatedAt;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name="board_idx")
+	private Board board;
 }
