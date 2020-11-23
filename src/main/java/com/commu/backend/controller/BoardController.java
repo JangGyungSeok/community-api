@@ -1,21 +1,18 @@
 package com.commu.backend.controller;
 
-import com.commu.backend.repository.community.BoardRepository;
 import com.commu.backend.service.BoardService;
 import com.commu.backend.service.PostService;
 import com.commu.backend.vo.Board;
+import com.commu.backend.vo.Comment;
 import com.commu.backend.vo.Post;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.models.Model;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class BoardController {
@@ -23,19 +20,11 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @Autowired
     PostService postService;
 
-    @RequestMapping(value="/test", method = RequestMethod.GET)
-    public ModelAndView abc(ModelAndView modelAndView) {
-        modelAndView.setViewName("abc");
-        modelAndView.addObject("test1", "test2");
-
-        return modelAndView;
-    }
-
-    @RequestMapping(value="/board", method = RequestMethod.GET)
-    public ModelAndView test(ModelAndView modelAndView) {
+    // 게시판 목록 출력
+    @GetMapping(value="/board")
+    public ModelAndView showBoardList(ModelAndView modelAndView) {
         List<Board> boardList = this.boardService.getBoardList();
 
         modelAndView.setViewName("board/board-list");
@@ -50,9 +39,10 @@ public class BoardController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/board/{boardName}", method = RequestMethod.GET)
-    public ModelAndView test2(ModelAndView modelAndView, @PathVariable("boardName") String boardName) {
-        List<Post> postListA = this.postService.getPostList(3);
+    //게시판 출력
+    @GetMapping(value="/board/{boardIdx}")
+    public ModelAndView showBoard(ModelAndView modelAndView, @PathVariable("boardIdx") long boardIdx) {
+        List<Post> postListA = this.postService.getPostList(boardIdx);
 
         modelAndView.setViewName("post/post-list");
         modelAndView.addObject("postListA", postListA);
@@ -64,10 +54,30 @@ public class BoardController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/jointest")
-    @ResponseBody
-    public String jointest() {
+    // 게시판 추가 // 추후에 특정 페이지에서 호출하게 하도록 (Parameter와 함께)
+    @PostMapping(value="/board")
+    public ModelAndView insertBoard(ModelAndView modelAndView) {
 
-        return "test";
+        return modelAndView;
+    }
+
+    // 게시판 수정
+    @PutMapping(value="/board/{boardIdx}")
+    public ModelAndView updateBoard(ModelAndView modelAndView, @PathVariable("boardIdx") long boardIdx) {
+
+        return modelAndView;
+    }
+
+    @GetMapping(value="/board/{boardIdx}/edit")
+    public ModelAndView editBoardPage(ModelAndView modelAndView, @PathVariable("boardIdx") long boardIdx) {
+
+        return modelAndView;
+    }
+
+    // 게시판 삭제
+    @DeleteMapping(value="/board/{boardIdx}")
+    public ModelAndView deleteBoard(ModelAndView modelAndView, @PathVariable("boardIdx") long boardIdx) {
+
+        return modelAndView;
     }
 }

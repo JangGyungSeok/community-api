@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.sun.istack.Nullable;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
@@ -35,6 +36,7 @@ public class Board {
 	@Column(name = "updated_at")
 	private Date updatedAt;
 
+	@Nullable
 	@OneToMany(mappedBy="board")
 	private List<Post> posts = new ArrayList<>();
 }

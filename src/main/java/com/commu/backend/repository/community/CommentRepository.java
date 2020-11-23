@@ -1,2 +1,4 @@
-package com.commu.backend.repository.community;public interface CommentRepository {
+package com.commu.backend.repository.community;
+
+public interface CommentRepository {
 }
