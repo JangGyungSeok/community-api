@@ -1,7 +1,10 @@
 package com.commu.backend.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.sun.istack.Nullable;
 import lombok.Data;
 import lombok.ToString;
 
@@ -9,7 +12,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@ToString(exclude = "board")
+@ToString(exclude = {"board", "comments"})
 @Table(name="posts")
 public class Post {
 	@Id
@@ -38,4 +41,8 @@ public class Post {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="board_idx")
 	private Board board;
+
+	@Nullable
+	@OneToMany(mappedBy="post")
+	private List<Comment> comments = new ArrayList<>();
 }

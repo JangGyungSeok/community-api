@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr th:each="board, i: ${boardList}">
+                <td th:text="${board.boardIdx}">
+                </td>
+                <td th:text="${board.boardName}">
+                </td>
+                <td th:text="${board.boardCreator}">
+                </td>
+                <td th:text="${board.createdAt}">
+                </td>
+                <td th:text="${board.updatedAt}">
+                </td>
+                [[${board.posts}]]
+                <td th:each="post, j:${board.posts}">
+                    <p th:text="${post.postTitle}">
+                        <p th:each="comment, k:${post.comments}">
+                            <div th:if="${comment != null}">
+                                <p th:text="${comment.commentIdx}">
+                                </p>
+                            </div>
+                        </p>
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
