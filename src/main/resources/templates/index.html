@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Board Post</title>
+</head>
+<body>
+	<h1>test post</h1>
+	<table class="tb_col">
+		<tr>
+			<th>post_idx</th> 
+			<th>board_idx</th> 
+			<th>title</th> 
+			<th>contents</th> 
+			<th>creator</th> 
+			<th>created_at</th> 
+			<th>updated_at</th> 
+		</tr> 
+		<tr th:each="postList : ${postList}"> 
+			<td th:text="${postList.post_idx}"></td>
+			<td th:text="${postList.board_idx}"></td> 
+			<td th:text="${postList.post_title}"></td> 
+			<td th:text="${postList.post_contents}"></td> 
+			<td th:text="${postList.post_creator}"></td> 
+			<td th:text="${postList.created_at}"></td> 
+			<td th:text="${postList.updated_at}"></td> 
+		</tr>
+	</table>
+</body>
+</html>
