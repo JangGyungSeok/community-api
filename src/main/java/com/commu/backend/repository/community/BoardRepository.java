@@ -9,7 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
-
-    public Optional<Board> findById(Long boardIdx);
+    
+    // 전체 조회
     public List<Board> findAll();
+    // 단일 조회
+    public Optional<Board> findByBoardIdx(Long boardIdx);
 }

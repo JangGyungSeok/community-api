@@ -9,8 +9,11 @@ import java.util.Optional;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    public Optional<Post> findById(Long postIdx);
+    // 게시판 기준 게시물 조회
     public List<Post> findByBoardIdx(long boardIdx);
+    // 게시판 기준 단일 게시물 조회
     public Optional<Post> findByBoardIdxAndPostIdx(long boardIdx, long postIdx);
+    
+    // 전체 게시판 전체 게시물 조회
     public List<Post> findAll();
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script th:inline="javascript">
+            // alert("abcd");
+
+
+            function test(a) {
+                alert(a);
+                $.ajax({
+                    type: "PUT",
+                    url: "/board/5",
+                    contentType: false,
+                    processData: false,
+                    // dataType: "json", // 해당 옵션은 api반환타입을 전부 json으로 통일한 이후
+                    success: function() {
+                        alert('성공했습니다');
+                    },
+                    error: function(request, status, error) {
+                        alert('실패했어요');
+                    }
+                });
+            }
+            // function test() {
+            //     alert("gkdl");
+            //     // $.ajax({
+            //     //     url: "/board/${board.boardIdx}",
+            //     //     type: "PUT"
+            //     // });
+            // }
+        </script>
+    </head>
+
+    <body>
+    [[${board.boardIdx}]]
+        <form id="boardEdit" method="get" th:action="@{/board/__${board.boardIdx}__}">
+            <input type="submit">
+        </form>
+
+        <form id="boardEditB" method="get" action="#" onsubmit="test(3)">
+            <input type="submit">
+        </form>
+
+        <button th:onclick="test([[${board.boardIdx}]])">abcd</button>
+    </body>
+</html>

@@ -19,7 +19,7 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
-
+    @Autowired
     PostService postService;
 
     // 게시판 목록 출력
@@ -63,13 +63,21 @@ public class BoardController {
 
     // 게시판 수정
     @PutMapping(value="/board/{boardIdx}")
-    public ModelAndView updateBoard(ModelAndView modelAndView, @PathVariable("boardIdx") long boardIdx) {
+    @ResponseBody
+    public String updateBoard(ModelAndView modelAndView, @PathVariable("boardIdx") long boardIdx) {
+        this.boardService.updateBoard(boardIdx);
+        System.out.println("여기 들어옴");
+        System.out.println("게시판 수정 들어옴 ㅠ");
 
-        return modelAndView;
+        return "{test}";
     }
 
     @GetMapping(value="/board/{boardIdx}/edit")
     public ModelAndView editBoardPage(ModelAndView modelAndView, @PathVariable("boardIdx") long boardIdx) {
+        Optional<Board> board = this.boardService.getBoard(boardIdx);
+
+        modelAndView.setViewName("board/board-edit");
+        modelAndView.addObject("board", board.get());
 
         return modelAndView;
     }
